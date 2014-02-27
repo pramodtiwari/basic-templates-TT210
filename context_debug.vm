@@ -45,9 +45,6 @@ ${DOLLAR}const.getNOT_KEY() = $const.getNOT_KEY()
 PROJECT VARIABLES :
 ===================
 
-* PROJECT CONFIGURATION :
-${DOLLAR}project.packageForBean = $project.packageForBean
-
 Project packages ( predefined variables ) :
 ${DOLLAR}ROOT_PKG   = "$ROOT_PKG"
 ${DOLLAR}ENTITY_PKG = "$ENTITY_PKG"
@@ -62,7 +59,7 @@ ${DOLLAR}DOC      = "$DOC"
 ${DOLLAR}TMP      = "$TMP"
 
 Project variables ( ${DOLLAR}project.variables ) including predefined variables :
-#foreach( $var in $project.variables )
+#foreach( $var in $project.allVariables )
  . ${DOLLAR}$var.name = $var.value
 #end
 
@@ -71,21 +68,21 @@ ENTITY VARIABLES :
 ==================
 
 * BEAN CLASS
-\$entity.name            = $entity.name
-\$entity.package         = $entity.package
-\$entity.superClass      = $entity.superClass
-\$entity.sqlTable        = $entity.sqlTable
-\$entity.databaseCatalog = $entity.databaseCatalog
-\$entity.databaseSchema  = $entity.databaseSchema
+${DOLLAR}entity.name            = $entity.name
+${DOLLAR}entity.package         = $entity.package
+## ${DOLLAR}entity.superClass      = $entity.superClass
+${DOLLAR}entity.databaseTable   = $entity.databaseTable
+${DOLLAR}entity.databaseCatalog = $entity.databaseCatalog
+${DOLLAR}entity.databaseSchema  = $entity.databaseSchema
 
-* BEAN CLASS ATTRIBUTES ( \$entity.attributes )
+* BEAN CLASS ATTRIBUTES ( ${DOLLAR}entity.attributes )
 #set ($attributes = $entity.attributes )
 ## array.size() is available since Velocity 1.6
 ${DOLLAR}entity.attributes.size() = $entity.attributes.size() 
 ${DOLLAR}attributes.size() = $attributes.size() 
 
-* BEAN CLASS JPA ANNOTATIONS ( \$entity.jpaAnnotations )
-$entity.jpaAnnotations(2)
+* BEAN CLASS JPA ANNOTATIONS ( ${DOLLAR}jpa.entityAnnotations(2) )
+$jpa.entityAnnotations(2, $entity)
 
 * BEAN CLASS AUTOINCREMTED PRIMARY KEY ?
 #if ( $entity.hasAutoIncrementedKey() )
@@ -104,30 +101,30 @@ KEY ATTRIBUTES :
  Field : $field.name
  ------------------------------
  Java :
-  \$field.name      = $field.name
-  \$field.type      = $field.type
-  \$field.getter    = $field.getter
-  \$field.setter    = $field.setter
-  \$field.label     = $field.label
-  \$field.inputType = $field.inputType
-##  \$field.isPrimitiveType() = $field.isPrimitiveType()   TODO
+  ${DOLLAR}field.name      = $field.name
+  ${DOLLAR}field.type      = $field.type
+  ${DOLLAR}field.getter    = $field.getter
+  ${DOLLAR}field.setter    = $field.setter
+  ${DOLLAR}field.label     = $field.label
+  ${DOLLAR}field.inputType = $field.inputType
+##  ${DOLLAR}field.isPrimitiveType() = $field.isPrimitiveType()   TODO
  Java bean validation annotations :
-$field.beanValidationAnnotations(2)
- Java bean validation annotations JSR303 only :
-$field.beanValidationAnnotationsJSR303(2)
+$beanValidation.annotations(2, $field)
+## TODO Java bean validation annotations JSR303 only :
+## TODO $field.beanValidationAnnotationsJSR303(2)
  JPA annotations :
-$field.jpaAnnotations(2)
+$jpa.fieldAnnotations(2, $field)
 
  Database :
-  \$field.isKeyElement() = $field.isKeyElement()
-  \$field.isAutoIncremented() = $field.isAutoIncremented()
-  \$field.isUsedInForeignKey() = $field.isUsedInForeignKey()
-  \$field.databaseName = $field.databaseName
-  \$field.databaseType = $field.databaseType
-  \$field.jdbcTypeCode = $field.jdbcTypeCode
+  ${DOLLAR}field.isKeyElement() = $field.isKeyElement()
+  ${DOLLAR}field.isAutoIncremented() = $field.isAutoIncremented()
+  ${DOLLAR}field.isUsedInForeignKey() = $field.isUsedInForeignKey()
+  ${DOLLAR}field.databaseName = $field.databaseName
+  ${DOLLAR}field.databaseType = $field.databaseType
+  ${DOLLAR}field.jdbcTypeCode = $field.jdbcTypeCode
   ${DOLLAR}field.databaseSize = $field.databaseSize
   ${DOLLAR}field.isDatabaseNotNull = $field.isDatabaseNotNull()
-  \$field.hasDatabaseDefaultValue() = $field.hasDatabaseDefaultValue()
-  \$field.databaseDefaultValue = $field.databaseDefaultValue
+  ${DOLLAR}field.hasDatabaseDefaultValue() = $field.hasDatabaseDefaultValue()
+  ${DOLLAR}field.databaseDefaultValue = $field.databaseDefaultValue
 
 #end
