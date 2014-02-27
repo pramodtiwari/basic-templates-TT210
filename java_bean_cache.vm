@@ -10,7 +10,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 import $entity.fullName ;
-#foreach( $import in $entity.importsForKeyFields )
+#foreach( $import in $java.imports($entity.keyAttributes) )
 import $import;
 #end
 

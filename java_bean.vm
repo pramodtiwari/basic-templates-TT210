@@ -8,7 +8,7 @@ package ${target.javaPackageFromFolder(${SRC})};
 
 import java.io.Serializable;
 
-#foreach( $import in $entity.imports )
+#foreach( $import in $java.imports($entity) )
 import $import;
 #end
 
