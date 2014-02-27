@@ -23,11 +23,11 @@ public class $entity.name implements Serializable
     private static final long serialVersionUID = 1L;
 
 #foreach( $field in $entity.keyAttributes )
-    private $field.formatedType(10) $field.formatedName(12) #if($field.hasInitialValue())= ${field.initialValue} #end; // Primary Key
+    private $field.formattedType(10) $field.formattedName(12) #if($field.hasInitialValue())= ${field.initialValue} #end; // Primary Key
 #end
 
 #foreach( $field in $entity.nonKeyAttributes )
-    private $field.formatedType(10) $field.formatedName(12) #if($field.hasInitialValue())= ${field.initialValue} #end;
+    private $field.formattedType(10) $field.formattedName(12) #if($field.hasInitialValue())= ${field.initialValue} #end;
 #end
 
     /**

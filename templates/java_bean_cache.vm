@@ -41,11 +41,11 @@ public class ${entity.name}Cache
 	 * Put the given ${entity.name} instance in the cache
 	 * @param ${entity.name} instance to be stored
 	 */
-#set ( $paramName = ${entity.name.toLowerCase()} )
+#set ( $paramName = ${fn.uncapitalize($entity.name)} )
 	public final static void put${entity.name}(${entity.name} ${paramName} ) {
 ##		String key = getKey( #argumentsWithGetters( ${paramName}, $keyFields) ) ;
 		String key = getKey( $fn.argumentsListWithGetter( ${paramName}, $keyFields) ) ;
-		cache.put(key, ${entity.name.toLowerCase()} );
+		cache.put(key, ${fn.uncapitalize($entity.name)} );
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class ${entity.name}Cache
 	 * Removes the given ${entity.name} from the cache using its primary key
 	 * @param ${entity.name} instance to be removed
 	 */
-#set ( $paramName = ${entity.name.toLowerCase()} )
+#set ( $paramName = ${fn.uncapitalize($entity.name)} )
 	public final static void remove${entity.name} (${entity.name} ${paramName} ) { 
 ##		String key = getKey( #argumentsWithGetters( ${paramName}, $keyFields) ) ;
 		String key = getKey( $fn.argumentsListWithGetter( ${paramName}, $keyFields) ) ;

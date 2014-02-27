@@ -19,7 +19,7 @@ import org.junit.Test;
  * @author Telosys Tools Generator
  *
  */
-#set ( $beanVar    = ${entity.name.toLowerCase()} )
+#set ( $beanVar    = ${fn.uncapitalize($entity.name)} )
 #set ( $cacheClass = "${entity.name}Cache" )
 public class ${cacheClass}Test 
 {
@@ -27,7 +27,7 @@ public class ${cacheClass}Test
 
 	private final static void populate(${entity.name} ${beanVar}) {
 #foreach( $field in $entity.attributes )
-#set ( $type = $field.type.toLowerCase() )
+#set ( $type = $fn.uncapitalize($field.type) )
 #if ( $field.type == "byte" || $field.type == "Byte" )
 		${beanVar}.${field.setter}( (byte) 1 ) ;
 #elseif ( $field.type == "short" || $field.type == "Short" )
