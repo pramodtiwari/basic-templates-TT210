@@ -69,8 +69,8 @@ ENTITY VARIABLES :
 
 * BEAN CLASS
 ${DOLLAR}entity.name            = $entity.name
+${DOLLAR}fn.uncapitalize(${DOLLAR}entity.name) = $fn.uncapitalize($entity.name)
 ${DOLLAR}entity.package         = $entity.package
-## ${DOLLAR}entity.superClass      = $entity.superClass
 ${DOLLAR}entity.databaseTable   = $entity.databaseTable
 ${DOLLAR}entity.databaseCatalog = $entity.databaseCatalog
 ${DOLLAR}entity.databaseSchema  = $entity.databaseSchema
@@ -110,8 +110,6 @@ KEY ATTRIBUTES :
 ##  ${DOLLAR}field.isPrimitiveType() = $field.isPrimitiveType()   TODO
  Java bean validation annotations :
 $beanValidation.annotations(2, $field)
-## TODO Java bean validation annotations JSR303 only :
-## TODO $field.beanValidationAnnotationsJSR303(2)
  JPA annotations :
 $jpa.fieldAnnotations(2, $field)
 
