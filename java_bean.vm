@@ -8,7 +8,7 @@ package ${target.javaPackageFromFolder(${SRC})};
 
 import java.io.Serializable;
 
-#foreach( $import in $java.imports($entity) )
+#foreach( $import in $java.imports($entity.attributes) )
 import $import;
 #end
 
@@ -100,14 +100,10 @@ public class $entity.name implements Serializable
 #end
 
 #end  
-    
 
     //----------------------------------------------------------------------
     // toString METHOD
     //----------------------------------------------------------------------
-    public String toString()
-    {
-$entity.toStringMethodCodeLines(8)
-    }
+$java.toStringMethod($entity, 4)
 
 }
